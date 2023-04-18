@@ -118,7 +118,11 @@ class _HomeState extends State<Home> {
               Text(toShow, style: TextStyle(fontSize: 30),),
 
               TextButton(
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const Next(),)),
+                onPressed: () {
+                  if(FirebaseAuth.instance.currentUser?.uid != null){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Next(),));
+                  }
+                },
                 style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.blue), foregroundColor: MaterialStatePropertyAll(Colors.white)),
                 child: Text('Next', style: TextStyle(fontSize: 30),),
               ),
